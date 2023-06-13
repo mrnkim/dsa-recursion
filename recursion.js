@@ -13,9 +13,9 @@ function product(nums) {
 
 /** longest: return the length of the longest word in an array of words. */
 // ["hello", "hi", "hola"]
-// "hello".length, longest(["hi", "hola"])
-//       5          "hi".length, longest ["hola"]
-//                      2        "hola".length, longest []
+// ("hello".length), longest(["hi", "hola"])
+//       5          ("hi".length), longest ["hola"]
+//                      2        ("hola".length), longest []
 //                                      4            0
 
 function longest(words) {
@@ -31,8 +31,24 @@ function longest(words) {
 }
 
 /** everyOther: return a string with every other letter. */
+/*  "hello"
+      "h" + "llo"
+              l + "o"
+                    o + ""
 
-function everyOther(str) {}
+
+*/
+function everyOther(str) {
+  // basecase
+  // str.slice to a non existent value always returns an empty string
+  if (str === "") {
+    return "";
+  }
+
+  //recursion
+  // slice off the rest and jump by 2
+  return str[0] + everyOther(str.slice(2));
+}
 
 /** find: return boolean depending on if val exists in array or not. */
 
