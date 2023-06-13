@@ -83,8 +83,20 @@ function isPalindrome(str) {
 }
 
 /** revString: return a copy of a string, but in reverse. */
+// "porcupine"
+// pull off the first letter, and return the remaining letters
+// build out a new string with the letters that are pulled off in each call
+// once we are at the end, return an empty string
 
-function revString(str) {}
+function revString(str) {
+  // base case
+  if (str === "") {
+    return "";
+  }
+
+  // recursion
+  return revString(str.slice(1)) + str[0];
+}
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
