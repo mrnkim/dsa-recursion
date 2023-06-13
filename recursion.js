@@ -134,12 +134,27 @@ function gatherStrings(obj) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return true if val is in array, false if not present). */
 
-function binarySearch(arr, val) { }
+function binarySearch(arr, val, left = 0, right = arr.length - 1) {
+  // binarySearch([1,2,3,4], 1); => true
+
+  //[1,2], 1 => true
+  //[3,4]
+  let middle = Math.floor(left + right / 2);
+  //base case
+  if (arr[middle] === val) return true;
+
+  //recursion
+  if (val < arr[middle]) {
+    return binarySearch(arr, val, (left = 0), (right = middle));
+  }
+  if (right - left === 0) return false;
+  return binarySearch(arr, val, (left = middle), (right = arr.length - 1));
+}
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val) { }
+function binarySearchIndex(arr, val) {}
 
 // you might find the above two problems easier if you change the function signature to:
 //
