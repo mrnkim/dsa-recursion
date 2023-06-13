@@ -4,9 +4,6 @@ function product(nums) {
   if (nums.length === 0) {
     return 1;
   }
-  if (nums.length === 1) {
-    return nums[0];
-  }
 
   return nums[0] * product(nums.slice(1));
 }
@@ -109,21 +106,40 @@ function findIndex(arr, val, i = 0) {
   //recursion
   return findIndex(arr, val, i + 1);
 }
+
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {}
+// iterate through the object
+// check if the value of a key is a string, and if it is, push to an array
+// if not, make a recursive call passing through the nested object to itself
+function gatherStrings(obj) {
+  let strings = [];
+
+  function _gatherStrings(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        _gatherStrings(obj[key]);
+      } else if (typeof obj[key] === "string") {
+        strings.push(obj[key]);
+      }
+    }
+  }
+
+  _gatherStrings(obj);
+  return strings;
+}
 
 // FURTHER STUDY
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return true if val is in array, false if not present). */
 
-function binarySearch(arr, val) {}
+function binarySearch(arr, val) { }
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val) {}
+function binarySearchIndex(arr, val) { }
 
 // you might find the above two problems easier if you change the function signature to:
 //
