@@ -99,9 +99,16 @@ function revString(str) {
 }
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
+//  ["duck", "cat", "pony"], "cat" => 1
 
-function findIndex(arr, val) {}
+function findIndex(arr, val, i = 0) {
+  //base case
+  if (arr.length === i) return -1;
+  if (val === arr[i]) return i;
 
+  //recursion
+  return findIndex(arr, val, i + 1);
+}
 /** gatherStrings: given an object, return an array of all of the string values. */
 
 function gatherStrings(obj) {}
