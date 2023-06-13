@@ -51,12 +51,36 @@ function everyOther(str) {
 }
 
 /** find: return boolean depending on if val exists in array or not. */
+// ["duck", "cat", "pony"], "porcupine";
 
-function find(arr, val) {}
+//    find(["cat", "pony"], "porcupine")
+//         find(["pony"], "porcupine")
+//             false
+
+function find(arr, val) {
+  //base case
+  if (val === arr[0]) return true;
+  if (arr.length === 1) return false;
+
+  //recursion
+  return find(arr.slice(1), val);
+}
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
+//"taccat"
+//isPalindrome("acca")
+//isPalindrome("cc")
+//isPalindrome("")
+//true
 
-function isPalindrome(str) {}
+function isPalindrome(str) {
+  //base case
+  if (str[0] !== str[str.length - 1]) return false;
+  if (str.length <= 1) return true;
+
+  //recursion
+  return isPalindrome(str.slice(1, str.length - 1));
+}
 
 /** revString: return a copy of a string, but in reverse. */
 
