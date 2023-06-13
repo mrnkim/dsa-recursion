@@ -139,16 +139,16 @@ function binarySearch(arr, val, left = 0, right = arr.length - 1) {
 
   //[1,2], 1 => true
   //[3,4]
-  let middle = Math.floor(left + right / 2);
+  let middle = Math.floor((left + right) / 2);
   //base case
   if (arr[middle] === val) return true;
 
   //recursion
   if (val < arr[middle]) {
-    return binarySearch(arr, val, (left = 0), (right = middle));
+    return binarySearch(arr, val, left, right);
   }
-  if (right - left === 0) return false;
-  return binarySearch(arr, val, (left = middle), (right = arr.length - 1));
+  if (right - left <= 1) return false;
+  return binarySearch(arr, val, middle, right);
 }
 
 /** binarySearch: given a sorted array of numbers, and a value,
