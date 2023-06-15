@@ -14,22 +14,23 @@ function product(nums) {
 }
 
 /** longest: return the length of the longest word in an array of words. */
-// ["hello", "hi", "hola"]
-// ("hello".length), longest(["hi", "hola"])
-//       5          ("hi".length), longest ["hola"]
-//                      2        ("hola".length), longest []
-//                                      4            0
 
 function longest(words) {
-  //base case
-  if (words.length === 0) {
-    return 0;
+  let longest = 0;
+
+  function _compareLength(words, i) {
+    //base case
+    if (words.length === i) return;
+
+    //recursion
+    longest = words[i].length > longest ? words[i].length : longest;
+
+    //progression
+    _compareLength(words, i + 1);
   }
 
-  //recursion
-  return words[0].length > longest(words.slice(1))
-    ? words[0].length
-    : longest(words.slice(1));
+  _compareLength(words, 0);
+  return longest;
 }
 
 /** everyOther: return a string with every other letter. */
