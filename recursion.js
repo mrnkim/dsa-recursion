@@ -34,39 +34,43 @@ function longest(words) {
 }
 
 /** everyOther: return a string with every other letter. */
-/*  "hello"
-      "h" + "llo"
-              l + "o"
-                    o + ""
 
-
-*/
 function everyOther(str) {
-  // basecase
-  // str.slice to a non existent value always returns an empty string
-  if (str === "") {
-    return "";
+  let result = "";
+
+  function _everyOther(str, i) {
+    //base case
+    if (str.length <= i) return;
+
+    //recursion
+
+    result += str[i];
+
+    //progression
+    _everyOther(str, i + 2);
   }
 
-  //recursion
-  // slice off the rest and jump by 2
-  return str[0] + everyOther(str.slice(2));
+  _everyOther(str, 0);
+
+  return result;
 }
 
 /** find: return boolean depending on if val exists in array or not. */
-// ["duck", "cat", "pony"], "porcupine";
-
-//    find(["cat", "pony"], "porcupine")
-//         find(["pony"], "porcupine")
-//             false
 
 function find(arr, val) {
-  //base case
-  if (val === arr[0]) return true;
-  if (arr.length === 1) return false;
+  let result = false;
 
-  //recursion
-  return find(arr.slice(1), val);
+  function _find(arr, val, i) {
+    //base case
+    if (arr.length === i) return;
+
+    //recursion
+    if (arr[i] === val) result = true;
+    _find(arr, val, i + 1);
+  }
+  _find(arr, val, 0);
+
+  return result;
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
@@ -77,12 +81,19 @@ function find(arr, val) {
 //true
 
 function isPalindrome(str) {
-  //base case
-  if (str[0] !== str[str.length - 1]) return false;
-  if (str.length <= 1) return true;
+  let result = false;
 
-  //recursion
-  return isPalindrome(str.slice(1, str.length - 1));
+  function _isPalindrome(str, i) {
+    //base case
+    if (str.length === 0) result = true;
+    if (str.length / 2 <= i) return;
+    //recursion
+    if (str[i] === str[str.length - 1]) result = true;
+    _isPalindrome(str, i + 1);
+  }
+
+  _isPalindrome(str, 0);
+  return result;
 }
 
 /** revString: return a copy of a string, but in reverse. */
