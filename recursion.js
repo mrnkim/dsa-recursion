@@ -74,11 +74,6 @@ function find(arr, val) {
 }
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
-//"taccat"
-//isPalindrome("acca")
-//isPalindrome("cc")
-//isPalindrome("")
-//true
 
 function isPalindrome(str) {
   let result = false;
@@ -151,21 +146,22 @@ function gatherStrings(obj) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return true if val is in array, false if not present). */
 
-function binarySearch(arr, val, left = 0, right = arr.length - 1) {
+function binarySearch(arr, val) {
   // binarySearch([1,2,3,4], 1); => true
+  // binarySearch([1,2,3,4,5], 1); => true
 
-  //[1,2], 1 => true
-  //[3,4]
-  let middle = Math.floor((left + right) / 2);
-  //base case
-  if (arr[middle] === val) return true;
+  if (arr.length === 0) return false;
 
-  //recursion
-  if (val < arr[middle]) {
-    return binarySearch(arr, val, left, right);
+  let midIndex = Math.floor(arr.length / 2);
+
+  if (arr[midIndex] === val) return true;
+  else if (val < arr[midIndex]) {
+    arr = arr.splice(0, midIndex);
+    return binarySearch(arr, val);
+  } else {
+    arr = arr.splice(midIndex + 1);
+    return binarySearch(arr, val);
   }
-  if (right - left <= 1) return false;
-  return binarySearch(arr, val, middle, right);
 }
 
 /** binarySearch: given a sorted array of numbers, and a value,
